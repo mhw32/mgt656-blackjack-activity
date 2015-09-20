@@ -8,10 +8,13 @@ function BlackjackCtrl ($scope) {
   var betAmount = Number($scope.betAmount);
 
   // Define a player with two characteristics: name, and wallet.
-  var createPlayer = function ( name ) {
+  var createPlayer = function (name) {
     $scope.player = name;
     // Initial betting amount.
     $scope.playerWallet = 1000;
+    // Initial wins/losses count.
+    $scope.win = 0;
+    $scope.loss = 0;
   };
   createPlayer($scope.player);
 
@@ -26,16 +29,18 @@ function BlackjackCtrl ($scope) {
   var playerWin = function() {
     $scope.playerWallet += $scope.pot*2;
     $scope.pot = 0;
+    $scope.win++;
     gameOver = true;
   };
 
   // Define what happens when a dealer wins.
   var dealerWin = function() {
     $scope.pot = 0;
+    $scope.loss++;
     gameOver = true;
   };
 
-  // What happens when you push.
+  // What happens when you push (aka bet).
   var push = function() {
     alert('Push');
     $scope.playerWallet += $scope.pot;

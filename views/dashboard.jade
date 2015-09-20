@@ -6,12 +6,12 @@ block content
       div.col-md-3
         input(type='text', placeholder='Name:', ng-model="player")
         input(type='text', placeholder='Bet amount:', ng-model="betAmount")
-        p Player: {{player}}
-        p Wallet: {{playerWallet}}
-        p Pot: {{pot}}
+        p Team: {{player}}
+        p Wallet: {{playerWallet | currency}}
+        p Pot: {{pot | currency}}
+        p Record: {{win}} wins, {{loss}} losses
       div.col-md-3
         button(ng-click='deal()') Deal
-        //- button(ng-click='clear()') Clear
         button(ng-click='userHit()') Hit
         button(ng-click='userStay()') Stay
         p Your Hand: {{userHandArr}} = {{userHand}}
