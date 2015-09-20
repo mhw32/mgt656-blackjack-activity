@@ -2,6 +2,7 @@ body {
   padding: 50px;
   font-family: 'Montserrat', sans-serif;
   background: url('../images/background.jpg');
+  padding-bottom: 90px;
 }
 
 a {
@@ -10,6 +11,11 @@ a {
 
 p {
   color: black;
+}
+
+p.emptymargin {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 h1 {
@@ -35,6 +41,7 @@ span {
   width: 40%;
   margin-top: 15px;
   max-width: 350px;
+  min-width: 220px;
   opacity: 0.9;
 }
 
@@ -77,7 +84,7 @@ hr.style-one {
 .buttonWrapper {
   margin: 0 auto;
   text-align: center;
-  padding-top: 15px;
+  padding-top: 20px;
 }
 
 .userButton {
@@ -94,6 +101,8 @@ hr.style-one {
   text-shadow:0px 1px 0px #2f6627;
   margin-right: 5px;
   margin-left: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .userButton:active {

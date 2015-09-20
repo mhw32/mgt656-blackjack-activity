@@ -29,15 +29,20 @@ block content
         div.division
             hr.style-one
         div
+          p
+            span.
+                Your Hand (total of {{userHand}})
+          {{userHandArr}}
+          {{userSuiteArr}}
+
           p 
             span.
-                Your Hand: 
-            {{userHandArr}}, {{userSuiteArr}}, total of {{userHand}}
-          p 
-            span.
-                Dealer's Hand: 
-            {{dealerHandArr}}, {{dealerSuiteArr}}, total of {{dealerHand}}
+                Dealer's Hand (total of {{dealerHand}})
+          {{dealerHandArr}}
+          {{dealerSuiteArr}}
+
         div.buttonWrapper
           button.userButton.blueButton(ng-click='deal()') Deal
           button.userButton.greenButton(ng-click='userHit()') Hit
           button.userButton.redButton(ng-click='userStay()') Stay
+
