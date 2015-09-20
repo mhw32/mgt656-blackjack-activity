@@ -1,18 +1,43 @@
 extends layout
 
 block content
+  h1 Blackjack on Node
   div(ng-controller='DashboardCtrl')
     div(ng-controller='BlackjackCtrl').col-md-12.game
-      div.col-md-3
+      div
         input(type='text', placeholder='Name:', ng-model="player")
+        br
         input(type='text', placeholder='Bet amount:', ng-model="betAmount")
-        p Team: {{player}}
-        p Wallet: {{playerWallet | currency}}
-        p Pot: {{pot | currency}}
-        p Record: {{win}} wins, {{loss}} losses
-      div.col-md-3
-        button(ng-click='deal()') Deal
-        button(ng-click='userHit()') Hit
-        button(ng-click='userStay()') Stay
-        p Your Hand: {{userHandArr}} = {{userHand}}
-        p Dealer's Hand:{{dealerHandArr}} = {{dealerHand}}
+      div.player-info  
+        div
+          p 
+            span. 
+                Name : 
+            {{player}}
+          p 
+            span. 
+                Wallet : 
+            {{playerWallet | currency}}
+          p 
+            span.
+                Pot : 
+            {{pot | currency}}
+          p 
+            span.
+                Record : 
+            {{win}} wins, {{loss}} losses
+        div.division
+            hr.style-one
+        div
+          p 
+            span.
+                Your Hand: 
+            {{userHandArr}}, {{userSuiteArr}}, total of {{userHand}}
+          p 
+            span.
+                Dealer's Hand: 
+            {{dealerHandArr}}, {{dealerSuiteArr}}, total of {{dealerHand}}
+        div.buttonWrapper
+          button.userButton.blueButton(ng-click='deal()') Deal
+          button.userButton.greenButton(ng-click='userHit()') Hit
+          button.userButton.redButton(ng-click='userStay()') Stay

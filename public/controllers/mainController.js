@@ -6,6 +6,24 @@ function BlackjackCtrl ($scope) {
   var deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11];
   $scope.pot = Number(0);
   var betAmount = Number($scope.betAmount);
+  $scope.userHandArr = [0, 0];
+  $scope.userSuiteArr = ['None', 'None'];
+  $scope.userHand = 0;
+  $scope.dealerHandArr = [0, 0];
+  $scope.dealerSuiteArr = ['None', 'None'];
+  $scope.dealerHand = 0;
+  $scope.player = "Card-Master-" + String(getRandomInt(1, 1000));
+  $scope.betAmount = 100;
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  function getRandomSuite() {
+    suites = ['spades', 'hearts', 'clubs', 'diamonds'];
+    random = getRandomInt(0, 4);
+    return suites[random];
+  }
 
   // Define a player with two characteristics: name, and wallet.
   var createPlayer = function (name) {
@@ -62,6 +80,7 @@ function BlackjackCtrl ($scope) {
       userHand += userHandArr[i];
       $scope.userHand = userHand;
       $scope.userHandArr = userHandArr;
+      $scope.userSuiteArr = userSuiteArr;
       //prevent player from getting 22
       if ((userHand[0] == 11) && (userHand[1] == 11)) {
         userHand[0] = 1;
@@ -72,6 +91,7 @@ function BlackjackCtrl ($scope) {
       dealerHand += dealerHandArr[i];
       $scope.dealerHand = dealerHand;
       $scope.dealerHandArr = dealerHandArr;
+      $scope.dealerSuiteArr = dealerSuiteArr;
       //prevent's getting 22 
       if ((dealerHandArr[0] == 11) && (dealerHandArr[1] == 11)) {
         dealerHand[0] = 1;
@@ -110,6 +130,8 @@ function BlackjackCtrl ($scope) {
       for (var cardnum = 0; cardnum < 2; cardnum++) {
         userHandArr.push(deck[randomCard()]);
         dealerHandArr.push(deck[randomCard()]);
+        userSuiteArr.push(getRandomSuite());
+        dealerSuiteArr.push(getRandomSuite());
       }
       calculateHand();
     }
@@ -118,6 +140,7 @@ function BlackjackCtrl ($scope) {
   $scope.userHit = function() {
     if (!gameOver) {
       userHandArr.push(deck[randomCard()]);
+      userSuiteArr.push(getRandomSuite());
       calculateHand();
     }
   };
@@ -140,15 +163,20 @@ function BlackjackCtrl ($scope) {
     dealerHand = 0;
     userHandArr = [];
     dealerHandArr = [];
+    userSuiteArr = [];
+    dealerSuiteArr = [];
     $scope.userHand = 0;
     $scope.dealerHand = 0;
     $scope.userHandArr = [];
     $scope.dealerHandArr = [];
+    $scope.userSuiteArr = [];
+    $scope.dealerSuiteArr = [];
   };
 
   $scope.userStay = function( ) {
     while(dealerHand < 17) {
       dealerHandArr.push(deck[randomCard()]);
+      dealerSuiteArr.push(getRandomSuite());
       calculateHand();
     }
 
